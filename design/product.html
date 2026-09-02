@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peach Rose Bouquet - Tulipcrafts.byyou</title>
+    <link rel="stylesheet" href="design-system.css">
+    <style>
+        /* Product Page Layout */
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Images */
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .main-image {
+            width: 100%;
+            height: 500px;
+            background-color: var(--color-peach-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: var(--color-text-light);
+        }
+        .thumbnail-list {
+            display: flex;
+            gap: 15px;
+        }
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-cream);
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border var(--transition-fast);
+        }
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--color-peach-dark);
+        }
+
+        /* Info */
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .product-title {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--color-peach-dark);
+            font-weight: bold;
+        }
+        .product-description {
+            color: var(--color-text-main);
+            font-size: 1rem;
+            line-height: 1.8;
+            border-bottom: 1px solid var(--color-cream);
+            padding-bottom: 20px;
+        }
+
+        /* Options */
+        .options-group {
+            margin-bottom: 15px;
+        }
+        .options-label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .color-options {
+            display: flex;
+            gap: 10px;
+        }
+        .color-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--color-off-white);
+            box-shadow: 0 0 0 1px #ddd;
+            cursor: pointer;
+        }
+        .color-btn.active {
+            box-shadow: 0 0 0 2px var(--color-text-main);
+        }
+
+        /* Quantity & Buttons */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: var(--color-white);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            font-size: 1.1rem;
+            font-family: var(--font-body);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .btn-full {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+        .btn-buy-now {
+            background-color: var(--color-text-main);
+            color: var(--color-white);
+        }
+        .btn-buy-now:hover {
+            background-color: #000;
+        }
+
+        /* Accordions for extra info */
+        .info-accordion {
+            border-top: 1px solid var(--color-cream);
+            margin-top: 20px;
+        }
+        .accordion-item {
+            border-bottom: 1px solid var(--color-cream);
+            padding: 15px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            user-select: none;
+        }
+        .accordion-content {
+            display: none;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--color-cream);
+        }
+        .accordion-content.active {
+            display: block;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
+            transition: transform var(--transition-fast);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Tulipcrafts.byyou</a>
+            <nav class="nav-links">
+                <a href="category.html">SHOP</a>
+                <a href="index.html#categories">CATEGORIES</a>
+                <a href="custom-order.html">CUSTOM ORDERS</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Product Section -->
+    <main class="product-container">
+        
+        <!-- Images -->
+        <div class="product-images animate-fade-in">
+            <div class="main-image" style="width: 100%; display: block; background-color: transparent;">
+                <!-- Image injected by JS -->
+            </div>
+        </div>
+
+        <!-- Details -->
+        <div class="product-details animate-slide-up delay-1">
+            <h1 class="product-title">Peach Rose Bouquet</h1>
+            <div class="product-price">₹1,200</div>
+            
+            <p class="product-description">
+                A beautiful, everlasting bouquet of handmade pipe-cleaner roses in our signature dusty peach tone. Carefully crafted to mimic real petals, this premium bouquet is perfect for gifting, home decor, or special occasions. Made with love and designed to last forever.
+            </p>
+
+            <!-- Customization note -->
+            <p style="color: var(--color-peach-dark); font-size: 0.95rem; margin-bottom: 20px; font-weight: 600; background: rgba(232, 211, 200, 0.2); padding: 10px 15px; border-radius: 8px; display: inline-block;">
+                ✨ Customize in your favourite colour and style!
+            </p>
+
+            <div class="options-group">
+                <span class="options-label">Quantity</span>
+                <div class="quantity-selector">
+                    <button class="quantity-btn" onclick="const input = this.nextElementSibling; if(parseInt(input.value) &gt; 1) input.value = parseInt(input.value) - 1;">-</button>
+                    <input type="text" class="quantity-input" id="qty-input" value="1" readonly>
+                    <button class="quantity-btn" onclick="const input = this.previousElementSibling; input.value = parseInt(input.value) + 1;">+</button>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary btn-full" onclick="placeOrder()">DM to Order on Instagram</button>
+                <button class="btn btn-buy-now btn-full" onclick="placeOrder()">Buy It Now</button>
+            </div>
+
+            <div class="info-accordion">
+                <div class="accordion-item" onclick="toggleAccordion(this)">
+                    <span>Delivery Information</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p style="font-size: 0.95rem; color: var(--color-text-light); margin-top: 10px; line-height: 1.5;">
+                        • All orders are handcrafted with love and care upon receiving your order.<br>
+                        • Please allow 2-4 days for making and processing.<br>
+                        • Shipping takes an additional 3-5 business days depending on your location.<br>
+                        • You will receive a tracking ID via Instagram DM once dispatched.
+                    </p>
+                </div>
+                
+                <div class="accordion-item" onclick="toggleAccordion(this)">
+                    <span>Product Care</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p style="font-size: 0.95rem; color: var(--color-text-light); margin-top: 10px; line-height: 1.5;">
+                        • Keep away from direct sunlight to prevent colors from fading.<br>
+                        • Do not wash or submerge in water.<br>
+                        • Use a soft dry brush or hairdryer on cool setting to gently remove dust.<br>
+                        • Handle with care to maintain the beautiful 3D shape of the flowers.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Floating Instagram Button -->
+    <a href="https://ig.me/m/tulipcrafts.byyou" target="_blank" class="instagram-float" title="DM us on Instagram" style="position: fixed; bottom: 30px; right: 30px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1000; transition: transform 0.2s ease-in-out;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 35px; height: 35px; fill: currentColor;">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+    </a>
+
+    <script src="js/data.js"></script>
+    <script>
+        // Get Product ID from URL (e.g. ?id=2)
+        const urlParams = new URLSearchParams(window.location.search);
+        let productId = parseInt(urlParams.get('id'));
+        
+        // Find product from data.js array
+        let product = products.find(p => p.id === productId);
+
+        // Default to product 1 if no ID or invalid ID
+        if (!product) {
+            product = products[0];
+        }
+
+        // Update DOM
+        document.title = product.title + " - Tulipcrafts.byyou";
+        document.querySelector('.product-title').innerHTML = product.title;
+        document.querySelector('.product-price').innerHTML = product.price;
+        document.querySelector('.product-description').innerHTML = product.desc;
+        
+        // Update Images (Swipe Slider)
+        const mainImageDiv = document.querySelector('.main-image');
+        
+        let sliderHtml = `<div style="display:flex; overflow-x:auto; scroll-snap-type:x mandatory; width:100%; border-radius:12px; gap:10px;">`;
+        product.images.forEach(img => {
+            sliderHtml += `<img src="${img}" alt="${product.title}" style="flex: 0 0 100%; width:100%; max-height:70vh; object-fit:contain; scroll-snap-align:start;">`;
+        });
+        sliderHtml += `</div>`;
+        
+        if(product.images.length > 1) {
+            sliderHtml += `<div style="text-align:center; color:gray; font-size:0.8rem; margin-top:10px;">← Swipe to see more →</div>`;
+        }
+        
+        mainImageDiv.innerHTML = sliderHtml;
+        
+        function placeOrder() {
+            // Check if logged in
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                document.getElementById('loginModal').style.display = 'flex';
+                return;
+            }
+
+            const qty = document.getElementById('qty-input').value;
+            const productName = product.title;
+            let productPrice = product.price.replace(new RegExp('<[^>]*>?', 'gm'), ''); // Remove HTML tags
+            
+            const message = `Hello Tulipcrafts! 🌷\nI would like to order:\n\nProduct: ${productName}\nQuantity: ${qty}\nPrice: ${productPrice}\n\nPlease let me know the payment and delivery details.`;
+            
+            navigator.clipboard.writeText(message).then(() => {
+                alert('🎉 Order details copied!\n\nWe are opening Instagram now. Just PASTE the message in the chat to send your order.');
+                window.open('https://ig.me/m/tulipcrafts.byyou', '_blank');
+            }).catch(() => {
+                window.open('https://ig.me/m/tulipcrafts.byyou', '_blank');
+            });
+        }
+
+        // Accordion functionality
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('.icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                content.classList.add('active');
+                icon.textContent = '-';
+            }
+        }
+    </script>
+</body>
+</html>
+

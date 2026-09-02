@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulipcrafts.byyou | Handmade Flowers</title>
+    <link rel="stylesheet" href="design-system.css">
+    <style>
+        /* Specific Page Styles */
+        
+
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--color-peach-light);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--color-text-main);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* Best Sellers */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .product-card {
+            background: var(--color-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-medium);
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        .product-img {
+            height: 300px;
+            background-color: var(--color-peach);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-style: italic;
+        }
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            color: var(--color-peach-dark);
+            font-weight: bold;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container animate-fade-in">
+            <a href="index.html" class="logo">Tulipcrafts.byyou</a>
+            <nav class="nav-links">
+                <a href="category.html">SHOP</a>
+                <a href="#categories">CATEGORIES</a>
+                <a href="custom-order.html">CUSTOM ORDERS</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="animate-slide-up">Handmade Flowers,<br>Made to Last 🌷</h1>
+            <p class="animate-slide-up delay-1">Beautiful handmade creations crafted with love, one flower at a time. Perfect for gifts, home decor, and special moments.</p>
+            <div class="hero-buttons animate-slide-up delay-2">
+                <a href="#shop" class="btn btn-primary">Shop Now</a>
+                <a href="custom-order.html" class="btn btn-secondary">Custom Order</a>
+            </div>
+        </div>
+        
+        <!-- Decorative floating petals (optional) -->
+        <div class="floating-element float-slow" style="position:absolute; top:20%; left:10%; font-size: 2rem; opacity:0.3;">🌸</div>
+        <div class="floating-element" style="position:absolute; top:60%; right:15%; font-size: 2.5rem; opacity:0.3; animation-delay: 2s;">🌷</div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="section" id="shop">
+        <div class="container">
+            <h2 class="text-center animate-slide-up">Our Best Sellers</h2>
+            <div class="products-grid" id="bestsellers-grid">
+                <!-- Products dynamically loaded from data.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Include data.js and load bestsellers -->
+    <script src="js/data.js"></script>
+    <script>
+        const grid = document.getElementById('bestsellers-grid');
+        let delay = 1;
+        
+        // Only show up to 4 best sellers on the homepage so it doesn't get cluttered
+        const bestsellers = products.filter(p => p.bestseller).slice(0, 4);
+        
+        bestsellers.forEach(p => {
+            grid.innerHTML += `
+                <div class="product-card animate-scale-up delay-${delay}">
+                    <a href="product.html?id=${p.id}" style="text-decoration:none; color:inherit;">
+                        <div class="product-img hover-zoom">
+                            <img src="${p.images[0]}" alt="${p.title}" style="width:100%; height:100%; object-fit:cover; display:block;">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <h3 class="product-title">${p.title}</h3>
+                        <p class="product-price">${p.price}</p>
+                    </div>
+                </div>`;
+                delay = delay > 3 ? 1 : delay + 1;
+        });
+    </script>
+
+    <!-- Shop by Category (Bento Style) -->
+    <section class="section" id="categories" style="background-color: var(--color-white);">
+        <div class="container">
+            <h2 class="text-center animate-slide-up" style="margin-bottom: 40px;">Shop by Category</h2>
+            
+            <div class="bento-grid">
+                
+                <!-- Bouquets (Wide) -->
+                <a href="category.html?cat=bouquets" class="bento-card bento-wide animate-scale-up" style="background-color: #F6E9E5;">
+                    <div class="bento-content">
+                        <span class="bento-subtitle">Best Sellers</span>
+                        <h3 class="bento-title">BOUQUETS</h3>
+                        <span class="bento-btn">SHOP NOW &rarr;</span>
+                    </div>
+                    <img src="images/royal-lily-bouquet.webp" alt="Bouquets" class="bento-img bento-img-right">
+                </a>
+
+                <!-- Flower Pots (Square) -->
+                <a href="category.html?cat=flower-pots" class="bento-card bento-square animate-scale-up delay-1" style="background-color: #EFEBE4;">
+                    <div class="bento-content">
+                        <span class="bento-subtitle">Home Decor</span>
+                        <h3 class="bento-title">FLOWER<br>POTS</h3>
+                    </div>
+                    <img src="images/chocolate-floral-pot.png" alt="Flower Pots" class="bento-img bento-img-bottom">
+                </a>
+
+                <!-- Single Stems (Square) -->
+                <a href="category.html?cat=single-stems" class="bento-card bento-square animate-scale-up delay-2" style="background-color: #E8F0EA;">
+                    <div class="bento-content">
+                        <span class="bento-subtitle">Minimalist</span>
+                        <h3 class="bento-title">SINGLE<br>STEMS</h3>
+                    </div>
+                    <img src="images/single-stem.png" alt="Single Stems" class="bento-img bento-img-bottom">
+                </a>
+
+                <!-- Custom Gifts (Wide) -->
+                <a href="category.html?cat=custom-gifts" class="bento-card bento-wide animate-scale-up delay-3" style="background-color: #F8E6EE;">
+                    <div class="bento-content">
+                        <span class="bento-subtitle">Personalized</span>
+                        <h3 class="bento-title">CUSTOM GIFTS</h3>
+                        <span class="bento-btn" style="background: #D988A1;">SHOP NOW &rarr;</span>
+                    </div>
+                    <img src="images/whimsical-spring-bouquet.jpg" alt="Custom Gifts" class="bento-img bento-img-right">
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section" id="about">
+        <div class="container text-center">
+            <h2 class="animate-slide-up">Why Choose Tulipcrafts?</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px;">
+                <div class="animate-slide-up delay-1" style="max-width: 250px;">
+                    <div style="font-size: 2.5rem; color: var(--color-peach-dark); margin-bottom: 15px;">✨</div>
+                    <h3>100% Handmade</h3>
+                    <p style="color: var(--color-text-light); font-size: 0.9rem;">Every petal is carefully shaped and crafted by hand with love and precision.</p>
+                </div>
+                <div class="animate-slide-up delay-2" style="max-width: 250px;">
+                    <div style="font-size: 2.5rem; color: var(--color-peach-dark); margin-bottom: 15px;">⏳</div>
+                    <h3>Everlasting Beauty</h3>
+                    <p style="color: var(--color-text-light); font-size: 0.9rem;">Unlike real flowers, our pipe-cleaner creations will never wilt or fade.</p>
+                </div>
+                <div class="animate-slide-up delay-3" style="max-width: 250px;">
+                    <div style="font-size: 2.5rem; color: var(--color-peach-dark); margin-bottom: 15px;">🎨</div>
+                    <h3>Fully Customizable</h3>
+                    <p style="color: var(--color-text-light); font-size: 0.9rem;">Want a specific color or design? We take custom orders for any occasion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="section" style="background-color: var(--color-cream);" id="reviews-section">
+        <div class="container text-center">
+            <h2 class="animate-slide-up">Customer Reviews</h2>
+            
+            <!-- Add Review Container -->
+            <div id="add-review-container" class="animate-slide-up delay-1" style="max-width: 500px; margin: 20px auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--color-text-main);">Leave a Review</h3>
+                <form id="reviewForm" style="display: flex; flex-direction: column; gap: 15px;">
+                    <input type="text" id="reviewName" placeholder="Your Name" required style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; outline: none;">
+                    <textarea id="reviewText" placeholder="Write your review here..." required style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; resize: vertical; min-height: 80px; outline: none;"></textarea>
+                    <button type="submit" class="btn btn-primary" style="padding: 12px; border-radius: 8px;">Submit Review</button>
+                </form>
+            </div>
+
+            <!-- Reviews List -->
+            <div id="reviews-list" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
+                <!-- Reviews will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter & Instagram -->
+    <section class="section">
+        <div class="container text-center">
+            <h2 class="animate-slide-up">Join Our Community</h2>
+            <p class="animate-slide-up delay-1" style="margin-bottom: 30px; color: var(--color-text-light);">Follow us on Instagram for behind-the-scenes and new designs!</p>
+            <a href="https://www.instagram.com/tulipcrafts.byyou?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" target="_blank" class="btn btn-primary animate-slide-up delay-2" style="margin-bottom: 40px;">Follow this page @tulipcrafts.byyou</a>
+            
+            <div class="product-card animate-slide-up delay-3" style="max-width: 600px; margin: 0 auto; padding: 40px; background-color: var(--color-peach-light);">
+                <h3>Get Updates & Offers</h3>
+                <p style="margin-bottom: 25px; color: var(--color-text-main);">Subscribe to our newsletter for exclusive discounts.</p>
+                <form id="newsletterForm" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <input type="email" id="nlEmail" placeholder="Your email address" required style="padding: 12px 20px; border: 2px solid transparent; border-radius: 30px; flex: 1; min-width: 220px; font-family: var(--font-body); outline: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: border 0.3s ease;">
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 30px;">Subscribe</button>
+                </form>
+                <div id="newsletterSuccess" style="display: none; padding-top: 20px; color: #2e7d32; font-weight: 600; font-size: 1.1rem; animation: fadeIn 0.5s forwards;">
+                    🎉 Thank you for subscribing! Check your email soon.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Script -->
+    <script>
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hide form, show success message
+            this.style.display = 'none';
+            document.getElementById('newsletterSuccess').style.display = 'block';
+            
+            // Reset after 4 seconds for demo purposes
+            setTimeout(() => {
+                this.reset();
+                this.style.display = 'flex';
+                document.getElementById('newsletterSuccess').style.display = 'none';
+            }, 5000);
+        });
+        
+        // Add focus effect to input
+        const nlInput = document.getElementById('nlEmail');
+        nlInput.addEventListener('focus', () => nlInput.style.borderColor = 'var(--color-peach-dark)');
+        nlInput.addEventListener('blur', () => nlInput.style.borderColor = 'transparent');
+    </script>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--color-white); padding: 60px 0 20px 0; border-top: 1px solid #ddd;">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;">
+            <div>
+                <h3 style="font-family: var(--font-heading); color: var(--color-peach-dark); font-style: italic;">Tulipcrafts.byyou</h3>
+                <p style="color: var(--color-text-light); font-size: 0.9rem; margin-top: 15px;">Handmade creations crafted with love. Delivering everlasting smiles all over India.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="list-style: none; padding: 0; color: var(--color-text-light); font-size: 0.9rem; line-height: 2;">
+                    <li><a href="#shop">Shop All</a></li>
+                    <li><a href="custom-order.html">Custom Orders</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <ul style="list-style: none; padding: 0; color: var(--color-text-light); font-size: 0.9rem; line-height: 2;">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container text-center" style="color: var(--color-text-light); font-size: 0.8rem; border-top: 1px solid #eee; padding-top: 20px;">
+            &copy; 2026 Tulipcrafts.byyou. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Script for scroll animations -->
+    <script>
+        // Advanced Intersection Observer to trigger slide-up animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    entry.target.style.opacity = '1'; // Ensure it stays visible after animation
+                    observer.unobserve(entry.target); // Run animation only once
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        // Pause all animations initially and observe them
+        document.querySelectorAll('.animate-slide-up, .animate-scale-up, .animate-fade-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+
+    <!-- Floating Instagram Button -->
+    <a href="https://ig.me/m/tulipcrafts.byyou" target="_blank" class="instagram-float" title="DM us on Instagram" style="position: fixed; bottom: 30px; right: 30px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1000; transition: transform 0.2s ease-in-out;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 35px; height: 35px; fill: currentColor;">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+    </a>
+
+</body>
+</html>
+

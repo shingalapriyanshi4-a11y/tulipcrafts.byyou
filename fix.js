@@ -1,0 +1,1 @@
+﻿const fs = require('fs'); let data = fs.readFileSync('d:/tulipcrafts.byyou/design/js/data.js', 'utf8'); data = data.replace(/\x3F(?=[0-9])/g, '₹'); fs.writeFileSync('d:/tulipcrafts.byyou/design/js/data.js', data, 'utf8');

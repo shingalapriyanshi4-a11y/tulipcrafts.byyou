@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Order - Tulipcrafts.byyou</title>
+    <link rel="stylesheet" href="design-system.css">
+    <style>
+        /* Page Layout */
+        .page-header {
+            background-color: var(--color-peach-light);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background: var(--color-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--color-text-main);
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background-color: var(--color-off-white);
+            transition: border-color var(--transition-fast);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-peach-dark);
+            background-color: var(--color-white);
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .form-container {
+                padding: 20px;
+                margin: 40px 20px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Tulipcrafts.byyou</a>
+            <nav class="nav-links">
+                <a href="category.html">SHOP</a>
+                <a href="index.html#categories">CATEGORIES</a>
+                <a href="custom-order.html">CUSTOM ORDERS</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header animate-fade-in">
+        <h1>Custom Orders</h1>
+        <p>Want something unique? Let us craft the perfect handmade flower arrangement just for you. Fill out the form below and we will get back to you with a quote.</p>
+    </div>
+
+    <main class="container">
+        <div class="form-container animate-slide-up delay-1">
+            <form id="customOrderForm">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">WhatsApp Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="+91 0000000000" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="type">Flower Type</label>
+                        <select id="type" class="form-control">
+                            <option>Roses</option>
+                            <option>Tulips</option>
+                            <option>Daisies</option>
+                            <option>Sunflowers</option>
+                            <option>Mixed Bouquet</option>
+                            <option>Other (specify below)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Preferred Colors</label>
+                        <input type="text" id="color" class="form-control" placeholder="e.g. Peach, Lavender, Cream">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="occasion">Occasion (Optional)</label>
+                    <input type="text" id="occasion" class="form-control" placeholder="Birthday, Anniversary, Home Decor etc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Design Details & Custom Message</label>
+                    <textarea id="details" class="form-control" placeholder="Describe your dream arrangement, size, budget, or any specific details..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary submit-btn">Request Custom Order</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Popup Modal for Instagram Redirection -->
+    <div id="igModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 40px; border-radius: 12px; max-width: 450px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+            <div style="font-size: 3rem; margin-bottom: 20px;">📋</div>
+            <h2 style="font-family: var(--font-heading); color: var(--color-peach-dark); margin-bottom: 15px;">Order Details Copied!</h2>
+            <p style="color: var(--color-text-main); margin-bottom: 25px; line-height: 1.6;">
+                We have copied your custom order details. You will now be taken to our Instagram chat. 
+                <br><br><strong>Please PASTE the message there to send us your inquiry!</strong>
+            </p>
+            <button id="goIgBtn" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 15px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border: none;">
+                Open Instagram Chat &rarr;
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('customOrderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const type = document.getElementById('type').value;
+            const color = document.getElementById('color').value;
+            const occasion = document.getElementById('occasion').value;
+            const details = document.getElementById('details').value;
+
+            // Construct message
+            const message = `🌸 *New Custom Order Inquiry* 🌸\n\n` +
+                            `👤 Name: ${name}\n` +
+                            `📱 WhatsApp: ${phone}\n` +
+                            `📧 Email: ${email}\n\n` +
+                            `💐 Flower Type: ${type}\n` +
+                            `🎨 Colors: ${color || 'N/A'}\n` +
+                            `🎉 Occasion: ${occasion || 'N/A'}\n\n` +
+                            `📝 Details: ${details || 'N/A'}\n\n` +
+                            `Please let me know the quote for this!`;
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(message).then(() => {
+                // Show modal
+                document.getElementById('igModal').style.display = 'flex';
+            }).catch(err => {
+                alert("Could not copy text. Please try again.");
+            });
+        });
+
+        document.getElementById('goIgBtn').addEventListener('click', function() {
+            window.location.href = "https://ig.me/m/tulipcrafts.byyou";
+        });
+    </script>
+
+</body>
+</html>
+

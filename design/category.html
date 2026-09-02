@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Category - Tulipcrafts.byyou</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="design-system.css">
+    <script src="js/data.js"></script>
+    <style>
+        .category-header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-peach-light) 100%);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .category-header h1 {
+            font-size: 3rem;
+            color: var(--color-charcoal);
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .breadcrumbs {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+        }
+        .breadcrumbs a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        .shop-layout {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .shop-sidebar {
+            width: 220px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        /* Hide scrollbar for sidebar */
+        .shop-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .shop-sidebar::-webkit-scrollbar-thumb {
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+        .shop-sidebar h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .category-list {
+            list-style: none;
+            padding: 0;
+        }
+        .category-list li {
+            margin-bottom: 12px;
+        }
+        .category-list a {
+            text-decoration: none;
+            color: var(--color-text-main);
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .category-list a:hover, .category-list a.active {
+            color: var(--color-peach-dark);
+            font-weight: 600;
+        }
+        .shop-main {
+            flex: 1;
+        }
+        .shop-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 80px; /* Below navbar */
+            background: var(--color-off-white);
+            z-index: 10;
+            padding-top: 15px;
+        }
+        .product-count {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+        .sort-select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            color: var(--color-charcoal);
+            background: white;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .shop-layout {
+                flex-direction: column;
+            }
+            .shop-sidebar {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .shop-layout {
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 20px;
+            }
+            .shop-sidebar {
+                width: 100%;
+                position: static;
+                height: auto;
+                max-height: none;
+                margin-bottom: 20px;
+            }
+            .category-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .category-header {
+                padding: 40px 20px 20px;
+            }
+            .category-header h1 {
+                font-size: 2rem;
+            }
+            .shop-toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                position: static;
+            }
+            .sort-dropdown {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Tulipcrafts.byyou</a>
+            <nav class="nav-links">
+                <a href="category.html">SHOP</a>
+                <a href="index.html#categories">CATEGORIES</a>
+                <a href="custom-order.html">CUSTOM ORDERS</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="category-header">
+        <h1 id="category-title">Shop</h1>
+        <p>Explore our beautiful handmade collection</p>
+    </div>
+
+    <section class="section" style="padding-top: 20px;">
+        <div class="container">
+            
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> / <span id="breadcrumb-current" style="color: var(--color-peach-dark);">Shop</span>
+            </div>
+
+            <div class="shop-layout">
+                <!-- Sidebar -->
+                <aside class="shop-sidebar">
+                    <h3>Categories</h3>
+                    <ul class="category-list">
+                        <li><a href="category.html" id="link-all">All Products</a></li>
+                        <li><a href="category.html?cat=bouquets" id="link-bouquets">Bouquets</a></li>
+                        <li><a href="category.html?cat=flower-pots" id="link-flower-pots">Flower Pots</a></li>
+                        <li><a href="category.html?cat=single-stems" id="link-single-stems">Single Stems</a></li>
+                        <li><a href="category.html?cat=custom-gifts" id="link-custom-gifts">Custom Gifts</a></li>
+                        <li><a href="category.html?cat=keychains" id="link-keychains">Keychains</a></li>
+                        <li><a href="category.html?cat=mobile-covers" id="link-mobile-covers">Mobile Covers</a></li>
+                        <li><a href="category.html?cat=flower-card-holder" id="link-flower-card-holder">Flower Card Holder</a></li>
+                    </ul>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="shop-main">
+                    <div class="shop-toolbar">
+                        <div class="product-count" id="product-count">Showing 0 results</div>
+                        <div>
+                            <select class="sort-select" id="sort-select" onchange="renderProducts()">
+                                <option value="featured">Sort by: Featured</option>
+                                <option value="low-high">Price: Low to High</option>
+                                <option value="high-low">Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="products-grid" id="products-container">
+                        <!-- Products will be injected here by JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Floating Instagram Button -->
+    <a href="https://ig.me/m/tulipcrafts.byyou" target="_blank" class="instagram-float" title="DM us on Instagram" style="position: fixed; bottom: 30px; right: 30px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1000; transition: transform 0.2s ease-in-out;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 35px; height: 35px; fill: currentColor;">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+    </a>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let category = urlParams.get('cat');
+        
+        const titleEl = document.getElementById('category-title');
+        const container = document.getElementById('products-container');
+        const countEl = document.getElementById('product-count');
+        const breadcrumbEl = document.getElementById('breadcrumb-current');
+        const sortSelect = document.getElementById('sort-select');
+
+        // Set active link in sidebar
+        if (category) {
+            let activeLink = document.getElementById('link-' + category);
+            if(activeLink) activeLink.classList.add('active');
+            let formattedCat = category.replace('-', ' ');
+            titleEl.textContent = formattedCat;
+            breadcrumbEl.textContent = formattedCat.charAt(0).toUpperCase() + formattedCat.slice(1);
+        } else {
+            document.getElementById('link-all').classList.add('active');
+            titleEl.textContent = "All Products";
+            breadcrumbEl.textContent = "All Products";
+        }
+
+        function renderProducts() {
+            // Filter
+            let filtered = category ? products.filter(p => p.category === category) : [...products];
+            
+            // Sort
+            const sortVal = sortSelect.value;
+            if (sortVal === 'low-high') {
+                filtered.sort((a, b) => parseFloat(a.price.replace(/[^0-9.-]+/g,"")) - parseFloat(b.price.replace(/[^0-9.-]+/g,"")));
+            } else if (sortVal === 'high-low') {
+                filtered.sort((a, b) => parseFloat(b.price.replace(/[^0-9.-]+/g,"")) - parseFloat(a.price.replace(/[^0-9.-]+/g,"")));
+            }
+
+            // Render
+            countEl.textContent = `Showing ${filtered.length} result${filtered.length !== 1 ? 's' : ''}`;
+            
+            if(filtered.length === 0) {
+                container.innerHTML = `<div class="empty-state" style="grid-column: 1/-1; padding: 50px 20px; text-align: center; color: gray;">No products found in this category yet.</div>`;
+            } else {
+                let html = '';
+                let delay = 1;
+                filtered.forEach(p => {
+                    html += `
+                    <div class="product-card animate-scale-up delay-${delay}" style="animation-play-state: running; opacity: 1;">
+                        <a href="product.html?id=${p.id}" style="text-decoration:none; color:inherit;">
+                            <div class="product-img hover-zoom">
+                                <img src="${p.images[0]}" alt="${p.title}" style="width:100%; height:100%; object-fit:cover; display:block;">
+                            </div>
+                        </a>
+                        <div class="product-info">
+                            <h3 class="product-title">${p.title}</h3>
+                            <p class="product-price">${p.price}</p>
+                        </div>
+                    </div>`;
+                    delay = delay > 3 ? 1 : delay + 1;
+                });
+                container.innerHTML = html;
+            }
+        }
+
+        // Initial render
+        renderProducts();
+    </script>
+</body>
+</html>
