@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
@@ -35,7 +36,10 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
 });
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/tulipcrafts')
+const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/tulipcrafts';
+
+mongoose.connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
@@ -131,7 +135,29 @@ app.put('/api/reviews/:id', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
+// Order Routes
+const Order = require('./models/Order');
+
+app.get('/api/orders', async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ orderDate: -1 });
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+app.post('/api/orders', async (req, res) => {
+  try {
+    const order = new Order(req.body);
+    await order.save();
+    res.status(201).json(order);
+  } catch (err) {
+    console.error("Order Save Error:", err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

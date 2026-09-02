@@ -18,7 +18,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 style={{ borderBottom: '2px solid var(--color-peach-dark)', paddingBottom: '10px', display: 'inline-block', marginBottom: '20px' }}>Quick Links</h3>
+          <h3 style={{ color: 'white', borderBottom: '2px solid var(--color-peach-dark)', paddingBottom: '10px', display: 'inline-block', marginBottom: '20px' }}>Quick Links</h3>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '15px' }}>
             <li><Link to="/" style={{ color: '#aaa', textDecoration: 'none', transition: '0.2s' }} onMouseOver={e=>e.target.style.color='white'} onMouseOut={e=>e.target.style.color='#aaa'}>Home</Link></li>
             <li><Link to="/category" style={{ color: '#aaa', textDecoration: 'none', transition: '0.2s' }} onMouseOver={e=>e.target.style.color='white'} onMouseOut={e=>e.target.style.color='#aaa'}>Shop All</Link></li>
@@ -28,7 +28,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 style={{ borderBottom: '2px solid var(--color-peach-dark)', paddingBottom: '10px', display: 'inline-block', marginBottom: '20px' }}>Stay in the loop</h3>
+          <h3 style={{ color: 'white', borderBottom: '2px solid var(--color-peach-dark)', paddingBottom: '10px', display: 'inline-block', marginBottom: '20px' }}>Stay in the loop</h3>
           <p style={{ color: '#aaa', lineHeight: '1.6', marginBottom: '15px' }}>Subscribe to get special offers, free giveaways, and updates.</p>
           <div style={{ display: 'flex' }}>
             <input type="email" placeholder="Enter your email" style={{ padding: '12px 15px', borderRadius: '5px 0 0 5px', border: 'none', outline: 'none', width: '100%' }} />
@@ -38,7 +38,7 @@ export default function Footer() {
 
       </div>
 
-      <div style={{ textAlign: 'center', borderTop: '1px solid #333', paddingTop: '20px', color: '#666', fontSize: '0.9rem' }}>
+      <div style={{ textAlign: 'center', borderTop: '1px solid #333', paddingTop: '20px', color: '#aaa', fontSize: '0.9rem' }}>
         <p style={{ margin: 0 }}>© {new Date().getFullYear()} Tulipcrafts.byyou. All rights reserved.</p>
       </div>
     </footer>

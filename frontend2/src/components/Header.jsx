@@ -36,7 +36,7 @@ export default function Header() {
         }
         .header-link {
           text-decoration: none; 
-          color: var(--color-text-main); 
+          color: var(--color-peach-dark); 
           font-size: 0.9rem; 
           font-weight: bold; 
           letter-spacing: 1px;
@@ -83,20 +83,36 @@ export default function Header() {
             <Link to="/" className="header-link">HOME</Link>
             <Link to="/category" className="header-link">SHOP</Link>
             
-            {localStorage.getItem('user') ? (
-              <div style={{display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer'}} onClick={() => {
-                if(window.confirm('Are you sure you want to log out?')) {
-                  localStorage.removeItem('user');
-                  window.location.reload();
+            {(() => {
+              const userStr = localStorage.getItem('user');
+              if (userStr) {
+                const user = JSON.parse(userStr);
+                if (user.email && user.email.trim().toLowerCase() === 'shingalapriyanshi4@gmail.com') {
+                  return <Link to="/admin" className="header-link" style={{color: 'var(--color-peach-dark)', background: '#fff3f0', padding: '5px 12px', borderRadius: '15px'}}>ADMIN</Link>;
                 }
-              }}>
-                <img 
-                  src={JSON.parse(localStorage.getItem('user')).picture} 
-                  alt="Profile" 
-                  style={{width: '32px', height: '32px', borderRadius: '50%'}} 
-                />
-                <span style={{fontSize: '0.9rem', fontWeight: 'bold'}}>{JSON.parse(localStorage.getItem('user')).name.split(' ')[0]}</span>
-              </div>
+              }
+              return null;
+            })()}
+
+            {localStorage.getItem('user') ? (
+                <div style={{display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', background: 'var(--color-off-white)', padding: '5px 15px 5px 5px', borderRadius: '30px', border: '1px solid var(--color-cream)'}} onClick={() => {
+                  if(window.confirm('Are you sure you want to log out?')) {
+                    localStorage.removeItem('user');
+                    window.location.reload();
+                  }
+                }}>
+                  <img 
+                    src={JSON.parse(localStorage.getItem('user')).picture} 
+                    alt="Profile" 
+                    style={{width: '32px', height: '32px', borderRadius: '50%'}} 
+                  />
+                  <span style={{fontSize: '0.9rem', fontWeight: 'bold', color: 'var(--color-peach-dark)'}}>
+                    {(() => {
+                      const name = JSON.parse(localStorage.getItem('user')).name.split(' ')[0];
+                      return name.length > 12 ? name.substring(0, 12) + '...' : name;
+                    })()}
+                  </span>
+                </div>
             ) : (
               <button 
                 onClick={() => setShowLoginModal(true)} 

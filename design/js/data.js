@@ -504,6 +504,16 @@ function initAuth() {
     }
 
     const loginModal = document.getElementById('loginModal');
+    const openLoginModal = () => {
+        if (loginModal) {
+            loginModal.style.display = 'flex';
+        }
+    };
+    const closeLoginModal = () => {
+        if (loginModal) {
+            loginModal.style.display = 'none';
+        }
+    };
     
     // 3. Setup Listeners
     document.body.addEventListener('click', (e) => {
@@ -516,12 +526,12 @@ function initAuth() {
                     location.reload();
                 }
             } else {
-                loginModal.style.display = 'flex';
+                openLoginModal();
             }
         }
         // Handle Close Modal
         if (e.target.id === 'closeLogin' || e.target.id === 'loginModal') {
-            loginModal.style.display = 'none';
+            closeLoginModal();
         }
         
         // Protect "Buy It Now" and Form Submission
@@ -529,7 +539,7 @@ function initAuth() {
             if (!isLoggedIn) {
                 e.preventDefault();
                 e.stopPropagation();
-                loginModal.style.display = 'flex';
+                openLoginModal();
             }
         }
     }, true); // Use capture phase to intercept clicks before they trigger links
@@ -586,10 +596,13 @@ function initAuth() {
                 addReviewContainer.style.display = 'block';
             } else {
                 addReviewContainer.innerHTML = '<p style="color:gray; font-size: 0.95rem; margin: 0;">Please <a href="#" id="loginToReview" style="color:var(--color-peach-dark); font-weight:bold; text-decoration:underline;">Login</a> to leave a review.</p>';
-                document.getElementById('loginToReview').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.getElementById('loginModal').style.display = 'flex';
-                });
+                const loginToReview = document.getElementById('loginToReview');
+                if (loginToReview) {
+                    loginToReview.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openLoginModal();
+                    });
+                }
             }
         }
 

@@ -1,31 +1,16 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Cart() {
   const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const total = cartItems.reduce((sum, item) => {
     const priceStr = item.product.price.replace(/[^0-9.]/g, '');
     const price = parseFloat(priceStr) || 0;
     return sum + (price * item.qty);
   }, 0);
-
-  const placeOrder = () => {
-    let message = `Hello Tulipcrafts! 🌷\nI would like to place an order from my Cart:\n\n`;
-    cartItems.forEach((item, index) => {
-      message += `${index + 1}. ${item.product.title} (Qty: ${item.qty})\n`;
-    });
-    message += `\nTotal Estimated Amount: ₹${total}\n\nPlease let me know the payment and delivery details.`;
-
-    navigator.clipboard.writeText(message).then(() => {
-      alert('🎉 Order details copied!\n\nWe are opening Instagram now. Just PASTE the message in the chat to send your order.');
-      clearCart();
-      window.open('https://ig.me/m/tulipcrafts.byyou', '_blank');
-    }).catch(() => {
-      window.open('https://ig.me/m/tulipcrafts.byyou', '_blank');
-    });
-  };
 
   const getImgUrl = (path) => path.startsWith('uploads/') ? `http://localhost:5000/${path}` : `/${path}`;
 
@@ -64,7 +49,7 @@ export default function Cart() {
             <h2 style={{margin: '0 0 20px 0'}}>Total: ₹{total}</h2>
             <div style={{display: 'flex', justifyContent: 'flex-end', gap: '15px'}}>
               <button className="btn btn-outline" onClick={clearCart}>Clear Cart</button>
-              <button className="btn btn-primary" onClick={placeOrder}>Checkout via Instagram</button>
+              <button className="btn btn-primary" onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
             </div>
           </div>
         </div>

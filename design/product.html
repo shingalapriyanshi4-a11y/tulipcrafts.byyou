@@ -6,199 +6,429 @@
     <title>Peach Rose Bouquet - Tulipcrafts.byyou</title>
     <link rel="stylesheet" href="design-system.css">
     <style>
-        /* Product Page Layout */
-        .product-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            padding: 60px 20px;
-            max-width: 1200px;
+        .product-shell {
+            max-width: 1220px;
             margin: 0 auto;
+            padding: 40px 20px 80px;
         }
 
-        /* Images */
-        .product-images {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin-bottom: 22px;
         }
+
+        .breadcrumb span:last-child {
+            color: var(--color-peach-dark);
+            font-weight: 700;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            gap: 42px;
+            align-items: start;
+        }
+
+        .gallery-panel,
+        .product-details {
+            background: rgba(255,255,255,0.65);
+            border: 1px solid rgba(182,141,132,0.12);
+            box-shadow: 0 18px 40px rgba(41, 30, 24, 0.06);
+            border-radius: 28px;
+            backdrop-filter: blur(6px);
+        }
+
+        .gallery-panel {
+            padding: 18px;
+        }
+
         .main-image {
             width: 100%;
-            height: 500px;
-            background-color: var(--color-peach-light);
-            border-radius: 12px;
+            min-height: 620px;
+            background: linear-gradient(135deg, var(--color-peach-light), #fff7f3);
+            border-radius: 20px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-style: italic;
             color: var(--color-text-light);
-        }
-        .thumbnail-list {
-            display: flex;
-            gap: 15px;
-        }
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            background-color: var(--color-cream);
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border var(--transition-fast);
-        }
-        .thumbnail:hover, .thumbnail.active {
-            border-color: var(--color-peach-dark);
+            border: 1px solid rgba(182,141,132,0.12);
         }
 
-        /* Info */
-        .product-details {
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .thumbnail-list {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            gap: 12px;
+            margin-top: 18px;
+            overflow-x: auto;
+            padding-bottom: 4px;
         }
-        .product-title {
-            font-size: 2.5rem;
-            margin-bottom: 5px;
+
+        .thumbnail {
+            width: 86px;
+            height: 86px;
+            border-radius: 14px;
+            border: 2px solid transparent;
+            background: var(--color-cream);
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+            overflow: hidden;
         }
-        .product-price {
-            font-size: 1.5rem;
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: var(--color-peach-dark);
+            transform: translateY(-2px);
+        }
+
+        .product-details {
+            padding: 32px 30px 24px;
+            position: relative;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(232,211,200,0.45);
             color: var(--color-peach-dark);
-            font-weight: bold;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
+
+        .product-title {
+            font-size: clamp(2.3rem, 4vw, 3.2rem);
+            margin-top: 18px;
+            margin-bottom: 15px;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+        }
+
+        .review-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-text-light);
+            font-size: 0.92rem;
+            margin-bottom: 16px;
+        }
+
+        .stars {
+            color: #e9b14f;
+            letter-spacing: 0.15em;
+            font-size: 1rem;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .product-price {
+            font-size: clamp(2rem, 2.8vw, 2.6rem);
+            color: var(--color-peach-dark);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        .old-price {
+            color: var(--color-text-light);
+            text-decoration: line-through;
+            font-size: 1.05rem;
+        }
+
+        .save-badge {
+            background: #f7e5dc;
+            color: #7b5149;
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
         .product-description {
             color: var(--color-text-main);
             font-size: 1rem;
             line-height: 1.8;
-            border-bottom: 1px solid var(--color-cream);
-            padding-bottom: 20px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(182,141,132,0.2);
+            margin-bottom: 20px;
         }
 
-        /* Options */
-        .options-group {
-            margin-bottom: 15px;
-        }
-        .options-label {
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .color-options {
-            display: flex;
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 10px;
-        }
-        .color-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid var(--color-off-white);
-            box-shadow: 0 0 0 1px #ddd;
-            cursor: pointer;
-        }
-        .color-btn.active {
-            box-shadow: 0 0 0 2px var(--color-text-main);
+            margin-bottom: 18px;
         }
 
-        /* Quantity & Buttons */
+        .meta-item {
+            background: rgba(239,235,228,0.7);
+            border: 1px solid rgba(182,141,132,0.08);
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.84rem;
+            color: var(--color-text-main);
+        }
+
+        .meta-item .icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(182,141,132,0.12);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-peach-dark);
+            font-weight: 700;
+        }
+
+        .options-group {
+            margin-bottom: 18px;
+        }
+
+        .options-label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+        }
+
         .quantity-selector {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
+            width: fit-content;
+            background: var(--color-off-white);
+            border-radius: 999px;
+            border: 1px solid rgba(182,141,132,0.14);
+            padding: 6px 10px;
         }
+
         .quantity-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #ddd;
-            background: var(--color-white);
+            width: 38px;
+            height: 38px;
+            border: none;
+            background: transparent;
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            color: var(--color-text-main);
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
+
         .quantity-input {
-            width: 50px;
+            width: 54px;
             text-align: center;
             border: none;
-            font-size: 1.1rem;
+            background: transparent;
+            font-size: 1.08rem;
             font-family: var(--font-body);
+            font-weight: 700;
+            color: var(--color-text-main);
         }
-        
+
         .action-buttons {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             margin-top: 10px;
         }
+
         .btn-full {
             width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
-        }
-        .btn-buy-now {
-            background-color: var(--color-text-main);
-            color: var(--color-white);
-        }
-        .btn-buy-now:hover {
-            background-color: #000;
+            padding: 16px 18px;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
         }
 
-        /* Accordions for extra info */
-        .info-accordion {
-            border-top: 1px solid var(--color-cream);
-            margin-top: 20px;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-peach-dark), #d4a19a);
+            color: var(--color-white);
+            box-shadow: 0 14px 28px rgba(182,141,132,0.22);
         }
-        .accordion-item {
-            border-bottom: 1px solid var(--color-cream);
-            padding: 15px 0;
-            cursor: pointer;
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 32px rgba(182,141,132,0.24);
+        }
+
+        .btn-buy-now {
+            background: var(--color-text-main);
+            color: var(--color-white);
+        }
+
+        .btn-buy-now:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
+
+        .secondary-row {
             display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            user-select: none;
+            gap: 12px;
+            margin-top: 14px;
         }
+
+        .tag-btn {
+            flex: 1;
+            border: 1px solid rgba(182,141,132,0.2);
+            background: rgba(255,255,255,0.75);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 0.83rem;
+            letter-spacing: 0.04em;
+            color: var(--color-text-main);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .tag-btn:hover {
+            border-color: var(--color-peach-dark);
+            background: rgba(242,227,219,0.4);
+        }
+
+        .custom-note {
+            margin-top: 18px;
+            background: linear-gradient(135deg, rgba(242,227,219,0.55), rgba(255,255,255,0.5));
+            color: var(--color-peach-dark);
+            border: 1px solid rgba(182,141,132,0.18);
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .info-accordion {
+            margin-top: 26px;
+            border-top: 1px solid rgba(182,141,132,0.18);
+        }
+
+        .accordion-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(182,141,132,0.18);
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--color-text-main);
+        }
+
+        .icon {
+            color: var(--color-peach-dark);
+            font-size: 1.4rem;
+            width: 24px;
+            text-align: center;
+        }
+
         .accordion-content {
             display: none;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--color-cream);
+            padding: 0 0 16px;
+            color: var(--color-text-light);
+            font-size: 0.96rem;
+            line-height: 1.7;
         }
+
         .accordion-content.active {
             display: block;
         }
 
-        /* Floating WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+        .bottom-panels {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 30px;
+        }
+
+        .detail-card {
+            background: rgba(255,255,255,0.65);
+            border: 1px solid rgba(182,141,132,0.12);
+            border-radius: 22px;
+            padding: 26px 22px;
+            box-shadow: 0 12px 28px rgba(41, 30, 24, 0.04);
+        }
+
+        .detail-card h3 {
+            margin-bottom: 14px;
+            font-size: 1.7rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .feature-list li {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            z-index: 1000;
-            transition: transform var(--transition-fast);
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--color-text-main);
+            line-height: 1.6;
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--color-peach-dark);
+            font-weight: 800;
         }
-        .whatsapp-float svg {
-            width: 35px;
-            height: 35px;
-            fill: currentColor;
+
+        @media (max-width: 900px) {
+            .product-layout,
+            .bottom-panels {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                min-height: 460px;
+            }
         }
 
         @media (max-width: 768px) {
-            .product-container {
+            .product-shell {
+                padding-top: 28px;
+            }
+
+            .product-details {
+                padding: 22px 20px 18px;
+            }
+
+            .meta-grid {
                 grid-template-columns: 1fr;
             }
-            
         }
     </style>
 </head>
@@ -217,72 +447,125 @@
     </header>
 
     <!-- Product Section -->
-    <main class="product-container">
-        
-        <!-- Images -->
-        <div class="product-images animate-fade-in">
-            <div class="main-image" style="width: 100%; display: block; background-color: transparent;">
-                <!-- Image injected by JS -->
-            </div>
+    <main class="product-shell">
+        <div class="breadcrumb">
+            <span>Home</span>
+            <span>›</span>
+            <span>Bouquets</span>
+            <span>›</span>
+            <span>Peach Rose Bouquet</span>
         </div>
 
-        <!-- Details -->
-        <div class="product-details animate-slide-up delay-1">
-            <h1 class="product-title">Peach Rose Bouquet</h1>
-            <div class="product-price">₹1,200</div>
-            
-            <p class="product-description">
-                A beautiful, everlasting bouquet of handmade pipe-cleaner roses in our signature dusty peach tone. Carefully crafted to mimic real petals, this premium bouquet is perfect for gifting, home decor, or special occasions. Made with love and designed to last forever.
-            </p>
-
-            <!-- Customization note -->
-            <p style="color: var(--color-peach-dark); font-size: 0.95rem; margin-bottom: 20px; font-weight: 600; background: rgba(232, 211, 200, 0.2); padding: 10px 15px; border-radius: 8px; display: inline-block;">
-                ✨ Customize in your favourite colour and style!
-            </p>
-
-            <div class="options-group">
-                <span class="options-label">Quantity</span>
-                <div class="quantity-selector">
-                    <button class="quantity-btn" onclick="const input = this.nextElementSibling; if(parseInt(input.value) &gt; 1) input.value = parseInt(input.value) - 1;">-</button>
-                    <input type="text" class="quantity-input" id="qty-input" value="1" readonly>
-                    <button class="quantity-btn" onclick="const input = this.previousElementSibling; input.value = parseInt(input.value) + 1;">+</button>
+        <section class="product-layout">
+            <div class="gallery-panel animate-fade-in">
+                <div class="main-image" style="display: block; background-color: transparent;">
+                    <!-- Image injected by JS -->
+                </div>
+                <div class="thumbnail-list">
+                    <div class="thumbnail active"><img src="images/peach-rose-bouquet.jpg" alt="Peach rose bouquet front view"></div>
+                    <div class="thumbnail"><img src="images/peach-rose-bouquet-2.jpg" alt="Peach rose bouquet side view"></div>
+                    <div class="thumbnail"><img src="images/peach-rose-bouquet-3.jpg" alt="Peach rose bouquet detail view"></div>
                 </div>
             </div>
 
-            <div class="action-buttons">
-                <button class="btn btn-primary btn-full" onclick="placeOrder()">DM to Order on Instagram</button>
-                <button class="btn btn-buy-now btn-full" onclick="placeOrder()">Buy It Now</button>
+            <aside class="product-details animate-slide-up delay-1">
+                <div class="eyebrow">Handcrafted gift</div>
+                <h1 class="product-title">Peach Rose Bouquet</h1>
+
+                <div class="review-row">
+                    <span class="stars">★★★★★</span>
+                    <span>4.9 rating • 420 reviews</span>
+                </div>
+
+                <div class="price-row">
+                    <div class="product-price">₹1,200</div>
+                    <span class="old-price">₹1,500</span>
+                    <span class="save-badge">Save 20%</span>
+                </div>
+
+                <p class="product-description">
+                    A beautiful, everlasting bouquet of handmade pipe-cleaner roses in our signature dusty peach tone. Carefully crafted to mimic real petals, this premium bouquet is perfect for gifting, home decor, or special occasions. Made with love and designed to last forever.
+                </p>
+
+                <div class="meta-grid">
+                    <div class="meta-item"><span class="icon">✦</span> Premium floral finish</div>
+                    <div class="meta-item"><span class="icon">✓</span> Made to order</div>
+                    <div class="meta-item"><span class="icon">⏱</span> 2–4 day crafting</div>
+                    <div class="meta-item"><span class="icon">🚚</span> Pan-India delivery</div>
+                </div>
+
+                <div class="custom-note">✨ Customize in your favourite colour and style!</div>
+
+                <div class="options-group">
+                    <span class="options-label">Quantity</span>
+                    <div class="quantity-selector">
+                        <button type="button" class="quantity-btn" aria-label="Decrease quantity" onclick="decreaseQuantity()">-</button>
+                        <input type="text" class="quantity-input" id="qty-input" value="1" readonly>
+                        <button type="button" class="quantity-btn" aria-label="Increase quantity" onclick="increaseQuantity()">+</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary btn-full" onclick="placeOrder()">Add to Basket</button>
+                    <button class="btn btn-buy-now btn-full" onclick="placeOrder()">Buy It Now</button>
+                </div>
+
+                <div class="secondary-row">
+                    <button class="tag-btn" type="button">Customise</button>
+                    <button class="tag-btn" type="button">Save for later</button>
+                </div>
+
+                <div class="info-accordion">
+                    <div class="accordion-item" onclick="toggleAccordion(this)">
+                        <span>Delivery Information</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            • All orders are handcrafted with love and care upon receiving your order.<br>
+                            • Please allow 2-4 days for making and processing.<br>
+                            • Shipping takes an additional 3-5 business days depending on your location.<br>
+                            • You will receive a tracking ID via Instagram DM once dispatched.
+                        </p>
+                    </div>
+
+                    <div class="accordion-item" onclick="toggleAccordion(this)">
+                        <span>Product Care</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            • Keep away from direct sunlight to prevent colors from fading.<br>
+                            • Do not wash or submerge in water.<br>
+                            • Use a soft dry brush or hairdryer on cool setting to gently remove dust.<br>
+                            • Handle with care to maintain the beautiful 3D shape of the flowers.
+                        </p>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="bottom-panels">
+            <div class="detail-card">
+                <h3>Why customers love this</h3>
+                <ul class="feature-list">
+                    <li>Soft peach petals styled with a luxury boutique finish.</li>
+                    <li>Perfect for birthdays, anniversaries, and gifting occasions.</li>
+                    <li>Lasts beautifully without the need for water or upkeep.</li>
+                    <li>Custom color options available on request.</li>
+                </ul>
             </div>
 
-            <div class="info-accordion">
-                <div class="accordion-item" onclick="toggleAccordion(this)">
-                    <span>Delivery Information</span>
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    <p style="font-size: 0.95rem; color: var(--color-text-light); margin-top: 10px; line-height: 1.5;">
-                        • All orders are handcrafted with love and care upon receiving your order.<br>
-                        • Please allow 2-4 days for making and processing.<br>
-                        • Shipping takes an additional 3-5 business days depending on your location.<br>
-                        • You will receive a tracking ID via Instagram DM once dispatched.
-                    </p>
-                </div>
-                
-                <div class="accordion-item" onclick="toggleAccordion(this)">
-                    <span>Product Care</span>
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    <p style="font-size: 0.95rem; color: var(--color-text-light); margin-top: 10px; line-height: 1.5;">
-                        • Keep away from direct sunlight to prevent colors from fading.<br>
-                        • Do not wash or submerge in water.<br>
-                        • Use a soft dry brush or hairdryer on cool setting to gently remove dust.<br>
-                        • Handle with care to maintain the beautiful 3D shape of the flowers.
-                    </p>
-                </div>
+            <div class="detail-card">
+                <h3>Crafted with care</h3>
+                <ul class="feature-list">
+                    <li>Handmade in small batches with attention to detail.</li>
+                    <li>Using premium faux floral textures and hand-finished stems.</li>
+                    <li>Secure packaging for safe doorstep delivery.</li>
+                    <li>Designed to bring warmth and elegance to your space.</li>
+                </ul>
             </div>
-
-        </div>
+        </section>
     </main>
 
     <!-- Floating Instagram Button -->
@@ -314,10 +597,11 @@
         
         // Update Images (Swipe Slider)
         const mainImageDiv = document.querySelector('.main-image');
+        const thumbnailList = document.querySelector('.thumbnail-list');
         
         let sliderHtml = `<div style="display:flex; overflow-x:auto; scroll-snap-type:x mandatory; width:100%; border-radius:12px; gap:10px;">`;
         product.images.forEach(img => {
-            sliderHtml += `<img src="${img}" alt="${product.title}" style="flex: 0 0 100%; width:100%; max-height:70vh; object-fit:contain; scroll-snap-align:start;">`;
+            sliderHtml += `<img src="${img}" alt="${product.title}" style="flex: 0 0 100%; width:100%; max-height:70vh; object-fit:cover; scroll-snap-align:start;">`;
         });
         sliderHtml += `</div>`;
         
@@ -326,32 +610,85 @@
         }
         
         mainImageDiv.innerHTML = sliderHtml;
+
+        if (thumbnailList && Array.isArray(product.images)) {
+            thumbnailList.innerHTML = product.images.map((img, index) => `
+                <div class="thumbnail ${index === 0 ? 'active' : ''}" data-index="${index}" style="cursor:pointer;">
+                    <img src="${img}" alt="${product.title} thumbnail ${index + 1}">
+                </div>
+            `).join('');
+
+            thumbnailList.querySelectorAll('.thumbnail').forEach((thumb) => {
+                thumb.addEventListener('click', () => {
+                    const index = Number(thumb.dataset.index || 0);
+                    const images = mainImageDiv.querySelectorAll('img');
+                    if (images[index]) {
+                        const slider = mainImageDiv.querySelector('div');
+                        if (slider) {
+                            slider.scrollTo({ left: images[index].offsetLeft, behavior: 'smooth' });
+                        }
+                    }
+                    thumbnailList.querySelectorAll('.thumbnail').forEach(item => item.classList.toggle('active', item === thumb));
+                });
+            });
+        }
         
+        function decreaseQuantity() {
+            const input = document.getElementById('qty-input');
+            if (!input) return;
+            const currentValue = parseInt(input.value, 10) || 1;
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+            }
+        }
+
+        function increaseQuantity() {
+            const input = document.getElementById('qty-input');
+            if (!input) return;
+            const currentValue = parseInt(input.value, 10) || 1;
+            input.value = currentValue + 1;
+        }
+
         function placeOrder() {
             // Check if logged in
             if (localStorage.getItem('isLoggedIn') !== 'true') {
-                document.getElementById('loginModal').style.display = 'flex';
+                if (typeof window.initAuth === 'function') {
+                    window.initAuth();
+                }
+
+                const loginModal = document.getElementById('loginModal');
+                if (loginModal) {
+                    loginModal.style.display = 'flex';
+                }
                 return;
             }
 
-            const qty = document.getElementById('qty-input').value;
+            const qty = document.getElementById('qty-input')?.value || '1';
             const productName = product.title;
-            let productPrice = product.price.replace(new RegExp('<[^>]*>?', 'gm'), ''); // Remove HTML tags
-            
+            let productPrice = (product.price || '').replace(new RegExp('<[^>]*>?', 'gm'), ''); // Remove HTML tags
+             
             const message = `Hello Tulipcrafts! 🌷\nI would like to order:\n\nProduct: ${productName}\nQuantity: ${qty}\nPrice: ${productPrice}\n\nPlease let me know the payment and delivery details.`;
-            
-            navigator.clipboard.writeText(message).then(() => {
-                alert('🎉 Order details copied!\n\nWe are opening Instagram now. Just PASTE the message in the chat to send your order.');
-                window.open('https://ig.me/m/tulipcrafts.byyou', '_blank');
-            }).catch(() => {
-                window.open('https://ig.me/m/tulipcrafts.byyou', '_blank');
-            });
+             
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(message).then(() => {
+                    alert('🎉 Order details copied!\n\nWe are opening Instagram now. Just PASTE the message in the chat to send your order.');
+                    window.open('https://ig.me/m/tulipcrafts.byyou', '_blank');
+                }).catch(() => {
+                    window.open('https://ig.me/m/tulipcrafts.byyou', '_blank');
+                });
+                return;
+            }
+
+            window.open('https://ig.me/m/tulipcrafts.byyou', '_blank');
         }
 
         // Accordion functionality
         function toggleAccordion(element) {
+            if (!element) return;
+
             const content = element.nextElementSibling;
             const icon = element.querySelector('.icon');
+            if (!content || !icon) return;
             
             if (content.classList.contains('active')) {
                 content.classList.remove('active');
