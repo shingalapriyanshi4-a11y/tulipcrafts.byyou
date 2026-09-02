@@ -15,7 +15,7 @@ export default function ReviewSection() {
   }, []);
 
   const fetchReviews = () => {
-    axios.get('http://localhost:5000/api/reviews')
+    axios.get('https://tulipcrafts-byyou.onrender.com/api/reviews')
       .then(res => setReviews(res.data))
       .catch(err => console.error(err));
   };
@@ -31,7 +31,7 @@ export default function ReviewSection() {
 
     if (editingId) {
       // Edit mode
-      axios.put(`http://localhost:5000/api/reviews/${editingId}`, {
+      axios.put(`https://tulipcrafts-byyou.onrender.com/api/reviews/${editingId}`, {
         rating, text: reviewText
       })
       .then(() => {
@@ -43,7 +43,7 @@ export default function ReviewSection() {
       .catch(err => console.error(err));
     } else {
       // Create new review
-      axios.post('http://localhost:5000/api/reviews', {
+      axios.post('https://tulipcrafts-byyou.onrender.com/api/reviews', {
         name: user.name,
         email: user.email,
         picture: user.picture,

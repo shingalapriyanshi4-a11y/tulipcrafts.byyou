@@ -33,13 +33,13 @@ export default function Admin() {
   }, [isAuthenticated]);
 
   const fetchProducts = () => {
-    axios.get('http://localhost:5000/api/products')
+    axios.get('https://tulipcrafts-byyou.onrender.com/api/products')
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
   };
 
   const fetchOrders = () => {
-    axios.get('http://localhost:5000/api/orders')
+    axios.get('https://tulipcrafts-byyou.onrender.com/api/orders')
       .then(res => setOrders(res.data))
       .catch(err => console.error(err));
   };
@@ -54,7 +54,7 @@ export default function Admin() {
         const formData = new FormData();
         formData.append('image', imageFile);
         
-        const uploadRes = await axios.post('http://localhost:5000/api/upload', formData, {
+        const uploadRes = await axios.post('https://tulipcrafts-byyou.onrender.com/api/upload', formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         imageUrl = uploadRes.data.imageUrl;
@@ -65,7 +65,7 @@ export default function Admin() {
         images: imageUrl ? [imageUrl] : []
       };
 
-      await axios.post('http://localhost:5000/api/products', productData);
+      await axios.post('https://tulipcrafts-byyou.onrender.com/api/products', productData);
       
       alert('Product Added Successfully! 🌸');
       fetchProducts();
@@ -81,13 +81,13 @@ export default function Admin() {
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      axios.delete(`http://localhost:5000/api/products/${id}`)
+      axios.delete(`https://tulipcrafts-byyou.onrender.com/api/products/${id}`)
         .then(() => fetchProducts())
         .catch(err => alert('Error deleting product: ' + err.message));
     }
   };
 
-  const getImgUrl = (path) => path.startsWith('uploads/') ? `http://localhost:5000/${path}` : `/${path}`;
+  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://tulipcrafts-byyou.onrender.com/${path}` : `/${path}`;
 
   if (!isAuthenticated) {
     return (

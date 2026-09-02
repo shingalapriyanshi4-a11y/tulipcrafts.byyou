@@ -16,8 +16,8 @@ export default function Category() {
     setFilter(cat);
 
     const url = cat === 'all' 
-      ? 'http://localhost:5000/api/products'
-      : `http://localhost:5000/api/products/category/${cat}`;
+      ? 'https://tulipcrafts-byyou.onrender.com/api/products'
+      : `https://tulipcrafts-byyou.onrender.com/api/products/category/${cat}`;
 
     axios.get(url)
       .then(res => {

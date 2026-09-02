@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function ProductCard({ product }) {
   const [isHovered, setIsHovered] = useState(false);
-  const getImgUrl = (path) => path.startsWith('uploads/') ? `http://localhost:5000/${path}` : `/${path}`;
+  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://tulipcrafts-byyou.onrender.com/${path}` : `/${path}`;
 
   return (
     <Link 
