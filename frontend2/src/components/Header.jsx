@@ -150,36 +150,21 @@ export default function Header() {
 
       {/* Login Modal Overlay */}
       {showLoginModal && (
-        <div style={{
-          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-          background: 'rgba(0,0,0,0.6)', zIndex: 9999,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          backdropFilter: 'blur(8px)'
-        }} onClick={() => setShowLoginModal(false)}>
+        <div className="login-modal-overlay" onClick={() => setShowLoginModal(false)}>
           
-          <div style={{
-            background: 'white', borderRadius: '24px',
-            maxWidth: '450px', width: '90%', display: 'flex', flexDirection: 'column',
-            boxShadow: '0 25px 50px rgba(0,0,0,0.3)', position: 'relative',
-            padding: '40px', overflowY: 'auto', maxHeight: '90vh'
-          }} onClick={e => e.stopPropagation()}>
+          <div className="login-modal-box" onClick={e => e.stopPropagation()}>
             
             <button 
               onClick={() => setShowLoginModal(false)}
-              style={{
-                position: 'absolute', top: '20px', right: '20px', 
-                background: '#f5f5f5', border: 'none', width: '36px', height: '36px',
-                borderRadius: '50%', fontSize: '1.2rem', cursor: 'pointer', 
-                color: '#555', display: 'flex', alignItems: 'center', justifyContent: 'center'
-              }}
+              className="login-modal-close"
             >
               &times;
             </button>
 
-            <h1 style={{fontFamily: 'var(--font-heading)', color: 'var(--color-text-main)', margin: '0 0 10px 0', fontSize: '2.2rem', textAlign: 'center'}}>
+            <h1 className="login-modal-title">
               {isSignupMode ? 'Create New Account' : 'Welcome Back'}
             </h1>
-            <p style={{color: 'var(--color-text-light)', marginBottom: '30px', fontSize: '0.95rem', textAlign: 'center'}}>
+            <p className="login-modal-desc">
               {isSignupMode ? 'Sign up to get started with Tulipcrafts.' : 'Please enter your email and password to log in.'}
             </p>
 
@@ -209,65 +194,51 @@ export default function Header() {
             }}>
               
               {isSignupMode && (
-                <div style={{marginBottom: '20px'}}>
-                  <label style={{display: 'block', fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--color-text-main)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px'}}>Full Name</label>
+                <div style={{marginBottom: '15px'}}>
+                  <label className="login-modal-label">Full Name</label>
                   <input 
                     type="text" 
                     name="fullname"
                     autoComplete="new-password"
                     required
-                    style={{
-                      width: '100%', padding: '15px', borderRadius: '12px',
-                      border: '1px solid #ddd', fontSize: '1rem', outline: 'none',
-                      background: '#fafafa', boxSizing: 'border-box'
-                    }} 
+                    className="login-modal-input"
                   />
                 </div>
               )}
 
-              <div style={{marginBottom: '20px'}}>
-                <label style={{display: 'block', fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--color-text-main)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px'}}>Email Address</label>
+              <div style={{marginBottom: '15px'}}>
+                <label className="login-modal-label">Email Address</label>
                 <input 
                   type="email" 
                   name="email"
                   autoComplete="new-password"
                   required
-                  style={{
-                    width: '100%', padding: '15px', borderRadius: '12px',
-                    border: '1px solid #ddd', fontSize: '1rem', outline: 'none',
-                    background: '#fafafa', boxSizing: 'border-box'
-                  }} 
+                  className="login-modal-input"
                 />
               </div>
 
-              <div style={{marginBottom: isSignupMode ? '20px' : '30px'}}>
-                <label style={{display: 'block', fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--color-text-main)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px'}}>Password</label>
+              <div style={{marginBottom: isSignupMode ? '15px' : '20px'}}>
+                <label className="login-modal-label">Password</label>
                 <input 
                   type="password" 
                   name="password"
                   autoComplete="new-password"
                   required
-                  style={{
-                    width: '100%', padding: '15px', borderRadius: '12px',
-                    border: '1px solid #ddd', fontSize: '1rem', outline: 'none',
-                    background: '#fafafa', boxSizing: 'border-box', letterSpacing: '2px'
-                  }} 
+                  className="login-modal-input"
+                  style={{letterSpacing: '2px'}}
                 />
               </div>
 
               {isSignupMode && (
-                <div style={{marginBottom: '30px'}}>
-                  <label style={{display: 'block', fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--color-text-main)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px'}}>Confirm Password</label>
+                <div style={{marginBottom: '20px'}}>
+                  <label className="login-modal-label">Confirm Password</label>
                   <input 
                     type="password" 
                     name="confirmPassword"
                     autoComplete="new-password"
                     required
-                    style={{
-                      width: '100%', padding: '15px', borderRadius: '12px',
-                      border: '1px solid #ddd', fontSize: '1rem', outline: 'none',
-                      background: '#fafafa', boxSizing: 'border-box', letterSpacing: '2px'
-                    }} 
+                    className="login-modal-input"
+                    style={{letterSpacing: '2px'}}
                   />
                 </div>
               )}
