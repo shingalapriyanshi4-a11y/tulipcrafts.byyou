@@ -48,17 +48,18 @@ export default function Header() {
           .header-container {
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 10px;
-            padding: 10px;
+            gap: 5px;
+            padding: 8px 10px;
+            justify-content: space-between;
           }
           .header-nav {
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
+            justify-content: flex-end;
+            gap: 8px;
           }
           .header-link {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
+            letter-spacing: 0px;
           }
           .login-image-col {
             display: none !important;
