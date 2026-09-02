@@ -46,20 +46,18 @@ export default function Header() {
         }
         @media (max-width: 768px) {
           .header-container {
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 5px;
-            padding: 8px 10px;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px 5%;
           }
           .header-nav {
             flex-wrap: wrap;
-            justify-content: flex-end;
-            gap: 8px;
+            justify-content: center;
+            gap: 15px;
           }
           .header-link {
-            font-size: 0.7rem;
-            letter-spacing: 0px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
           }
           .login-image-col {
             display: none !important;
