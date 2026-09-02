@@ -46,13 +46,19 @@ export default function Header() {
         }
         @media (max-width: 768px) {
           .header-container {
-            flex-direction: column;
-            gap: 15px;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
           }
           .header-nav {
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
+            width: 100%;
+          }
+          .header-link {
+            font-size: 0.8rem;
           }
           .login-image-col {
             display: none !important;
@@ -71,7 +77,6 @@ export default function Header() {
         <div className="header-container">
           <Link to="/" className="logo" style={{ 
             fontFamily: 'var(--font-heading)', 
-            fontSize: '1.8rem', 
             color: 'var(--color-peach-dark)',
             textDecoration: 'none',
             fontWeight: 'bold',

@@ -239,26 +239,52 @@ header {
         padding: 15px 5%;
     }
     .nav-container {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-between;
+    }
+    .logo {
+        font-size: 1.4rem;
     }
     .nav-links {
-        gap: 15px;
+        gap: 10px;
         flex-wrap: wrap;
         justify-content: center;
+        width: 100%;
     }
     .nav-links a {
         font-size: 0.8rem;
     }
+    .cart-icon {
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+    }
+    .cart-icon svg {
+        width: 16px !important;
+        height: 16px !important;
+    }
     .hero {
-        padding: 60px 5%;
+        padding: 40px 5%;
     }
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
     }
     .bento-grid {
-        /* Keep laptop structure but scale down */
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile is better than 3 */
+        grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: 140px;
         gap: 10px;
     }
@@ -292,6 +318,23 @@ header {
     }
     .bento-img-right {
         width: 50%;
+    }
+    /* Scale down floating buttons */
+    .whatsapp-float, .instagram-float {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .whatsapp-float {
+        bottom: 85px !important;
+        right: 20px !important;
+    }
+    .instagram-float {
+        bottom: 30px !important;
+        right: 20px !important;
+    }
+    .whatsapp-float svg, .instagram-float svg {
+        width: 25px !important;
+        height: 25px !important;
     }
 }
 /* Products Grid */
