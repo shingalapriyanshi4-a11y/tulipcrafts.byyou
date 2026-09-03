@@ -1,4 +1,4 @@
-/* Tulipcrafts.byyou - Design System */
+﻿/* Tulipcrafts.byyou - Design System */
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
@@ -324,7 +324,7 @@ header {
         font-size: 0.95rem;
         margin-bottom: 4px;
     }
-    .product-price {
+        .product-price {
         font-size: 0.9rem;
     }
     .product-info {
@@ -348,11 +348,12 @@ header {
         height: 25px !important;
     }
 }
+
 /* Products Grid */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 @media (min-width: 768px) {
     .products-grid {
@@ -381,7 +382,6 @@ header {
     position: relative;
 }
 .product-img img {
-    
     height: 100%;
     object-fit: cover;
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -429,146 +429,3 @@ header {
   transform: scale(0.9);
   animation: scaleUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
-
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideLeft {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleUp {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Hover Effects */
-.hover-zoom {
-  overflow: hidden;
-  border-radius: 12px 12px 0 0;
-}
-
-.hover-zoom img, .hover-zoom .img-placeholder {
-  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-  
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.product-card:hover .hover-zoom img, 
-.product-card:hover .hover-zoom .img-placeholder {
-  transform: scale(1.1);
-}
-
-/* Floating Elements (Petals/Decorations) */
-.floating-element {
-  animation: float 6s ease-in-out infinite;
-}
-
-.float-slow {
-  animation: float 8s ease-in-out infinite alternate;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(5deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
-
-/* Layout Utilities */
-.container {
-  
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.section {
-  padding: 80px 0;
-}
-
-.text-center {
-  text-align: center;
-}
-
-html, body { margin: 0; padding: 0;   }
-
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-
-/* Login Modal */
-.login-modal-overlay {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.6); z-index: 9999;
-  display: flex; align-items: center; justify-content: center;
-  backdrop-filter: blur(8px);
-}
-.login-modal-box {
-  background: white; border-radius: 24px;
-  max-width: 450px; width: 90%; display: flex; flex-direction: column;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.3); position: relative;
-  padding: 40px; overflow-y: auto; max-height: 90vh;
-}
-.login-modal-close {
-  position: absolute; top: 20px; right: 20px; 
-  background: #f5f5f5; border: none; width: 36px; height: 36px;
-  border-radius: 50%; font-size: 1.2rem; cursor: pointer; 
-  color: #555; display: flex; align-items: center; justify-content: center;
-}
-.login-modal-title {
-  font-family: var(--font-heading); color: var(--color-text-main); margin: 0 0 10px 0; font-size: 2.2rem; text-align: center;
-}
-.login-modal-desc {
-  color: var(--color-text-light); margin-bottom: 30px; font-size: 0.95rem; text-align: center;
-}
-.login-modal-label {
-  display: block; font-size: 0.85rem; font-weight: bold; color: var(--color-text-main); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;
-}
-.login-modal-input {
-  width: 100%; padding: 15px; border-radius: 12px;
-  border: 1px solid #ddd; font-size: 1rem; outline: none;
-  background: #fafafa; box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-  .login-modal-box {
-    padding: 20px;
-    border-radius: 16px;
-  }
-  .login-modal-title {
-    font-size: 1.5rem;
-  }
-  .login-modal-desc {
-    font-size: 0.8rem;
-    margin-bottom: 15px;
-  }
-  .login-modal-input {
-    padding: 10px;
-    font-size: 0.9rem;
-  }
-  .login-modal-label {
-    font-size: 0.75rem;
-    margin-bottom: 5px;
-  }
-}
-
-
