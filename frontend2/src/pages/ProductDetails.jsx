@@ -13,7 +13,7 @@ export default function ProductDetails() {
 
   useEffect(() => {
     window.scrollTo(0, 0); // Always ensure top scroll on mount
-    axios.get(`https://tulipcrafts-byyou.onrender.com/api/products/${id}`)
+    axios.get(`https://grateful-abundance-production-89ff.up.railway.app/api/products/${id}`)
       .then(res => setProduct(res.data))
       .catch(err => console.error(err));
   }, [id]);
@@ -23,7 +23,7 @@ export default function ProductDetails() {
     navigate('/cart');
   };
 
-  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://tulipcrafts-byyou.onrender.com/${path}` : `/${path}`;
+  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://grateful-abundance-production-89ff.up.railway.app/${path}` : `/${path}`;
 
   if (!product) return <div style={{padding: '100px 20px', textAlign: 'center', fontSize: '1.2rem', color: '#888'}}>Loading beautiful things...</div>;
 

@@ -9,7 +9,7 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    axios.get('https://tulipcrafts-byyou.onrender.com/api/products')
+    axios.get('https://grateful-abundance-production-89ff.up.railway.app/api/products')
       .then(res => {
         const best = res.data.filter(p => p.bestseller).slice(0, 4);
         // If no bestsellers explicitly marked, just take the first 4
@@ -19,7 +19,7 @@ export default function Home() {
       .catch(err => console.error(err));
   }, []);
 
-  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://tulipcrafts-byyou.onrender.com/${path}` : `/${path}`;
+  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://grateful-abundance-production-89ff.up.railway.app/${path}` : `/${path}`;
 
   return (
     <main>

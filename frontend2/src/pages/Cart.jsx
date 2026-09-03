@@ -12,7 +12,7 @@ export default function Cart() {
     return sum + (price * item.qty);
   }, 0);
 
-  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://tulipcrafts-byyou.onrender.com/${path}` : `/${path}`;
+  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://grateful-abundance-production-89ff.up.railway.app/${path}` : `/${path}`;
 
   return (
     <main className="container" style={{padding: '60px 20px', minHeight: '60vh'}}>

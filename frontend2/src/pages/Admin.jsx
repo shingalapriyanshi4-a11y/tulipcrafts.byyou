@@ -33,13 +33,13 @@ export default function Admin() {
   }, [isAuthenticated]);
 
   const fetchProducts = () => {
-    axios.get('https://tulipcrafts-byyou.onrender.com/api/products')
+    axios.get('https://grateful-abundance-production-89ff.up.railway.app/api/products')
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
   };
 
   const fetchOrders = () => {
-    axios.get('https://tulipcrafts-byyou.onrender.com/api/orders')
+    axios.get('https://grateful-abundance-production-89ff.up.railway.app/api/orders')
       .then(res => setOrders(res.data))
       .catch(err => console.error(err));
   };
@@ -54,7 +54,7 @@ export default function Admin() {
         const formData = new FormData();
         formData.append('image', imageFile);
         
-        const uploadRes = await axios.post('https://tulipcrafts-byyou.onrender.com/api/upload', formData, {
+        const uploadRes = await axios.post('https://grateful-abundance-production-89ff.up.railway.app/api/upload', formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         imageUrl = uploadRes.data.imageUrl;
@@ -65,7 +65,7 @@ export default function Admin() {
         images: imageUrl ? [imageUrl] : []
       };
 
-      await axios.post('https://tulipcrafts-byyou.onrender.com/api/products', productData);
+      await axios.post('https://grateful-abundance-production-89ff.up.railway.app/api/products', productData);
       
       alert('Product Added Successfully! 🌸');
       fetchProducts();
@@ -81,13 +81,13 @@ export default function Admin() {
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      axios.delete(`https://tulipcrafts-byyou.onrender.com/api/products/${id}`)
+      axios.delete(`https://grateful-abundance-production-89ff.up.railway.app/api/products/${id}`)
         .then(() => fetchProducts())
         .catch(err => alert('Error deleting product: ' + err.message));
     }
   };
 
-  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://tulipcrafts-byyou.onrender.com/${path}` : `/${path}`;
+  const getImgUrl = (path) => path.startsWith('uploads/') ? `https://grateful-abundance-production-89ff.up.railway.app/${path}` : `/${path}`;
 
   if (!isAuthenticated) {
     return (

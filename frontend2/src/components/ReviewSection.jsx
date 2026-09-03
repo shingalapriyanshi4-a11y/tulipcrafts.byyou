@@ -15,7 +15,7 @@ export default function ReviewSection() {
   }, []);
 
   const fetchReviews = () => {
-    axios.get('https://tulipcrafts-byyou.onrender.com/api/reviews')
+    axios.get('https://grateful-abundance-production-89ff.up.railway.app/api/reviews')
       .then(res => setReviews(res.data))
       .catch(err => console.error(err));
   };
@@ -31,7 +31,7 @@ export default function ReviewSection() {
 
     if (editingId) {
       // Edit mode
-      axios.put(`https://tulipcrafts-byyou.onrender.com/api/reviews/${editingId}`, {
+      axios.put(`https://grateful-abundance-production-89ff.up.railway.app/api/reviews/${editingId}`, {
         rating, text: reviewText
       })
       .then(() => {
@@ -43,7 +43,7 @@ export default function ReviewSection() {
       .catch(err => console.error(err));
     } else {
       // Create new review
-      axios.post('https://tulipcrafts-byyou.onrender.com/api/reviews', {
+      axios.post('https://grateful-abundance-production-89ff.up.railway.app/api/reviews', {
         name: user.name,
         email: user.email,
         picture: user.picture,

@@ -54,7 +54,7 @@ export default function Checkout() {
       };
 
       // Save to database (Admin Panel)
-      await axios.post('https://tulipcrafts-byyou.onrender.com/api/orders', order);
+      await axios.post('https://grateful-abundance-production-89ff.up.railway.app/api/orders', order);
       
       // Clear cart
       clearCart();
