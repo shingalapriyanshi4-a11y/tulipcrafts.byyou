@@ -1,0 +1,6 @@
+[build]
+builder = "nixpacks"
+rootDir = "backend"
+
+[deploy]
+startCommand = "node server.js"
