@@ -7,6 +7,7 @@ export default function Category() {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState('all');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -87,26 +88,44 @@ export default function Category() {
           padding: 0 20px;
         }
 
+        .mobile-cat-toggle {
+          display: none !important;
+        }
         @media (max-width: 768px) {
+          .mobile-cat-toggle {
+            display: flex !important;
+            align-items: center;
+            gap: 10px;
+            background: var(--color-peach-dark);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            width: fit-content;
+          }
           .shop-container {
             grid-template-columns: 1fr;
           }
+          .aside-wrapper {
+            display: ${isMobileMenuOpen ? 'block' : 'none'} !important;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+          }
           .cat-sidebar {
             display: flex;
-            overflow-x: auto;
-            padding-bottom: 15px;
+            flex-direction: column !important;
             gap: 10px;
-            -webkit-overflow-scrolling: touch;
-          }
-          .cat-sidebar::-webkit-scrollbar {
-            height: 4px;
-          }
-          .cat-sidebar::-webkit-scrollbar-thumb {
-            background: #ddd;
-            border-radius: 4px;
           }
           .cat-pill {
             margin-bottom: 0;
+            text-align: left;
+            padding: 12px 15px;
           }
         }
       `}</style>
@@ -135,24 +154,34 @@ export default function Category() {
       
       <div className="shop-container">
         
-        {/* Modern Sidebar (Sticky) */}
-        <aside style={{ position: 'sticky', top: '100px', alignSelf: 'start', maxHeight: 'calc(100vh - 120px)', overflowY: 'auto' }}>
-          <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-text-main)', marginBottom: '20px', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+        <div>
+          <button className="mobile-cat-toggle" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             Categories
-          </h3>
-          <div className="cat-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: '5px', paddingRight: '10px' }}>
-            {categories.map(c => (
-              <Link 
-                key={c.id} 
-                to={c.id === 'all' ? '/category' : `/category?cat=${c.id}`} 
-                className={`cat-pill ${filter === c.id ? 'active' : ''}`}
-              >
-                {c.name}
-              </Link>
-            ))}
+          </button>
+          
+          <div className="aside-wrapper">
+            {/* Modern Sidebar (Sticky) */}
+            <aside style={{ position: 'sticky', top: '100px', alignSelf: 'start', maxHeight: 'calc(100vh - 120px)', overflowY: 'auto' }}>
+              <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-text-main)', marginBottom: '20px', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                Filter by Category
+              </h3>
+              <div className="cat-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: '5px', paddingRight: '10px' }}>
+                {categories.map(c => (
+                  <Link 
+                    key={c.id} 
+                    to={c.id === 'all' ? '/category' : `/category?cat=${c.id}`} 
+                    className={`cat-pill ${filter === c.id ? 'active' : ''}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {c.name}
+                  </Link>
+                ))}
+              </div>
+            </aside>
           </div>
-        </aside>
+        </div>
 
         {/* Animated Products Grid */}
         <div className="shop-main">
