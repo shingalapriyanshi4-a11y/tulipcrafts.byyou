@@ -46,18 +46,30 @@ export default function Header() {
         }
         @media (max-width: 768px) {
           .header-container {
-            flex-direction: column;
-            gap: 15px;
-            padding: 15px 5%;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 5px;
+            padding: 10px 3%;
           }
           .header-nav {
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            gap: 8px;
           }
           .header-link {
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 0.65rem;
+            letter-spacing: 0px;
+          }
+          .logo {
+            font-size: 1.1rem !important;
+          }
+          .cart-btn-mobile {
+            padding: 4px 8px !important;
+            font-size: 0.7rem !important;
+          }
+          .cart-icon-mobile {
+            width: 14px !important;
+            height: 14px !important;
           }
           .login-image-col {
             display: none !important;
@@ -127,19 +139,18 @@ export default function Header() {
               </button>
             )}
             
-            <Link to="/cart" style={{
+            <Link to="/cart" className="cart-btn-mobile" style={{
               textDecoration: 'none',
               fontWeight: 'bold', 
               color: 'var(--color-peach-dark)', 
               display: 'flex', 
               alignItems: 'center', 
-              gap: '8px',
-              background: 'var(--color-off-white)',
+              gap: '5px',
               padding: '8px 15px',
               borderRadius: '30px',
               border: '1px solid var(--color-cream)'
             }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <svg className="cart-icon-mobile" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
               <span>CART {cartCount > 0 && `(${cartCount})`}</span>
             </Link>
           </nav>
