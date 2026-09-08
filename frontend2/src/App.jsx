@@ -12,6 +12,7 @@ import Checkout from './pages/Checkout';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
 import FakeGoogleAuth from './pages/FakeGoogleAuth';
+import NotFound from './pages/NotFound';
 
 function Layout({ children }) {
   const location = useLocation();
@@ -58,6 +59,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/google-auth" element={<FakeGoogleAuth />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>

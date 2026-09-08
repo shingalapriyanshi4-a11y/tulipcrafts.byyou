@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+﻿import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CartContext } from '../context/CartContext';
@@ -8,6 +8,7 @@ export default function ProductDetails() {
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
+  const [error, setError] = useState(false);
   const [accordionOpen, setAccordionOpen] = useState({ delivery: false, care: false });
   const { addToCart } = useContext(CartContext);
 
@@ -15,7 +16,7 @@ export default function ProductDetails() {
     window.scrollTo(0, 0); // Always ensure top scroll on mount
     axios.get(`https://grateful-abundance-production-89ff.up.railway.app/api/products/${id}`)
       .then(res => setProduct(res.data))
-      .catch(err => console.error(err));
+      .catch(err => { console.error(err); setError(true); });
   }, [id]);
 
   const handleAddToCart = () => {
@@ -24,6 +25,17 @@ export default function ProductDetails() {
   };
 
   const getImgUrl = (path) => path.startsWith('uploads/') ? `https://grateful-abundance-production-89ff.up.railway.app/${path}` : `/${path}`;
+
+    if (error) {
+    return (
+      <div style={{padding: '100px 20px', textAlign: 'center', minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--color-peach-dark)" strokeWidth="1.5" style={{marginBottom: '20px'}}><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <h2 style={{color: 'var(--color-text-main)', marginBottom: '10px'}}>We're sorry!</h2>
+        <p style={{color: 'var(--color-text-light)', fontSize: '1.1rem', maxWidth: '400px'}}>We couldn't load this product right now. Please check your internet connection or try again later.</p>
+        <button onClick={() => window.location.reload()} className="btn btn-primary" style={{marginTop: '20px'}}>Try Again</button>
+      </div>
+    );
+  }
 
   if (!product) return <div style={{padding: '100px 20px', textAlign: 'center', fontSize: '1.2rem', color: '#888'}}>Loading beautiful things...</div>;
 
@@ -258,14 +270,14 @@ export default function ProductDetails() {
           <div className="pdp-desc">{product.desc}</div>
 
           <div className="pdp-custom-box">
-            <span style={{fontSize: '1.5rem'}}>✨</span>
+            <span style={{fontSize: '1.5rem'}}>âœ¨</span>
             <p>Customize in your favourite colour and style!</p>
           </div>
 
           <div className="pdp-qty-row">
             <span className="pdp-qty-label">Quantity</span>
             <div className="pdp-qty-control">
-              <button className="pdp-qty-btn" onClick={() => setQty(Math.max(1, qty - 1))}>−</button>
+              <button className="pdp-qty-btn" onClick={() => setQty(Math.max(1, qty - 1))}>âˆ’</button>
               <input type="text" className="pdp-qty-input" value={qty} readOnly />
               <button className="pdp-qty-btn" onClick={() => setQty(qty + 1)}>+</button>
             </div>
@@ -283,10 +295,10 @@ export default function ProductDetails() {
               </div>
               <div className="pdp-acc-content" style={{maxHeight: accordionOpen.delivery ? '500px' : '0', paddingBottom: accordionOpen.delivery ? '20px' : '0'}}>
                 <p>
-                  <span>✓ All orders are handcrafted with love and care.</span>
-                  <span>✓ Please allow 2-4 days for making and processing.</span>
-                  <span>✓ Shipping takes an additional 3-5 business days.</span>
-                  <span>✓ You will receive a tracking ID via Instagram DM once dispatched.</span>
+                  <span>âœ“ All orders are handcrafted with love and care.</span>
+                  <span>âœ“ Please allow 2-4 days for making and processing.</span>
+                  <span>âœ“ Shipping takes an additional 3-5 business days.</span>
+                  <span>âœ“ You will receive a tracking ID via Instagram DM once dispatched.</span>
                 </p>
               </div>
             </div>
@@ -298,10 +310,10 @@ export default function ProductDetails() {
               </div>
               <div className="pdp-acc-content" style={{maxHeight: accordionOpen.care ? '500px' : '0', paddingBottom: accordionOpen.care ? '20px' : '0'}}>
                 <p>
-                  <span>✓ Keep away from direct sunlight to prevent fading.</span>
-                  <span>✓ Do not wash or submerge in water.</span>
-                  <span>✓ Use a soft dry brush to gently remove dust.</span>
-                  <span>✓ Handle with care to maintain the beautiful 3D shape.</span>
+                  <span>âœ“ Keep away from direct sunlight to prevent fading.</span>
+                  <span>âœ“ Do not wash or submerge in water.</span>
+                  <span>âœ“ Use a soft dry brush to gently remove dust.</span>
+                  <span>âœ“ Handle with care to maintain the beautiful 3D shape.</span>
                 </p>
               </div>
             </div>
@@ -311,3 +323,4 @@ export default function ProductDetails() {
     </>
   );
 }
+

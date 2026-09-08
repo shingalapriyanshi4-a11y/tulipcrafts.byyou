@@ -5,6 +5,7 @@ import { CartContext } from '../context/CartContext';
 export default function Header() {
   const { cartItems } = useContext(CartContext);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSignupMode, setIsSignupMode] = useState(false);
   const [showFakeGoogle, setShowFakeGoogle] = useState(false);
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
@@ -44,34 +45,52 @@ export default function Header() {
         .login-image-col {
           display: block !important;
         }
-        @media (max-width: 768px) {
+                @media (max-width: 768px) {
           .header-container {
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            gap: 2px;
-            padding: 10px 10px;
+            padding: 10px 15px;
+            gap: 10px;
+          }
+          .mobile-menu-btn {
+            display: block !important;
+            background: none;
+            border: none;
+            color: var(--color-peach-dark);
+            cursor: pointer;
+            padding: 5px;
           }
           .header-nav {
-            flex-wrap: nowrap;
-            justify-content: flex-end;
-            gap: 6px;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 20px;
+            gap: 20px;
+            align-items: flex-start;
+          }
+          .header-nav.open {
+            display: flex;
           }
           .header-link {
-            font-size: 0.65rem;
-            letter-spacing: 0px;
+            font-size: 1.1rem;
+            width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
           }
           .logo {
-            font-size: 0.95rem !important;
-            letter-spacing: 0px !important;
+            font-size: 1.2rem !important;
+            margin-right: auto;
+            margin-left: 10px;
           }
           .cart-btn-mobile {
-            padding: 5px 8px !important;
-            font-size: 0.75rem !important;
-          }
-          .cart-icon-mobile {
-            width: 16px !important;
-            height: 16px !important;
+            padding: 6px 12px !important;
+            font-size: 0.85rem !important;
           }
           .hide-on-mobile {
             display: none !important;
@@ -90,7 +109,15 @@ export default function Header() {
         borderBottom: '1px solid rgba(0,0,0,0.05)',
         display: 'block' 
       }}>
-        <div className="header-container">
+                <div className="header-container">
+          <button 
+            className="mobile-menu-btn" 
+            style={{display: 'none'}} 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+
           <Link to="/" className="logo" style={{ 
             fontFamily: 'var(--font-heading)', 
             color: 'var(--color-peach-dark)',
@@ -100,7 +127,8 @@ export default function Header() {
           }}>
             Tulipcrafts.byyou
           </Link>
-          <nav className="header-nav">
+
+          <nav className={`header-nav ${isMobileMenuOpen ? 'open' : '}`}>
             <Link to="/" className="header-link">HOME</Link>
             <Link to="/category" className="header-link">SHOP</Link>
             
@@ -144,7 +172,10 @@ export default function Header() {
               </button>
             )}
             
-            <Link to="/cart" className="cart-btn-mobile" style={{
+            
+          </nav>
+
+          <Link to="/cart" className="cart-btn-mobile" style={{
               textDecoration: 'none',
               fontWeight: 'bold', 
               color: 'var(--color-peach-dark)', 
@@ -158,7 +189,6 @@ export default function Header() {
               <svg className="cart-icon-mobile" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
               <span><span className="hide-on-mobile">CART </span>{cartCount > 0 && `(${cartCount})`}</span>
             </Link>
-          </nav>
         </div>
       </header>
 
@@ -333,3 +363,6 @@ export default function Header() {
     </>
   );
 }
+
+
+

@@ -3,7 +3,7 @@ import { CartContext } from '../context/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Cart() {
-  const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
+  const { cartItems, removeFromCart, updateQuantity, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   const total = cartItems.reduce((sum, item) => {
@@ -33,20 +33,27 @@ export default function Cart() {
                 )}
                 <div>
                   <h3 style={{margin: '0 0 5px 0', fontSize: '1.1rem'}}>{item.product.title}</h3>
-                  <p style={{margin: 0, color: 'var(--color-text-light)'}}>Qty: {item.qty} x {item.product.price.replace(/<[^>]+>/g, '')}</p>
+                  <p style={{margin: 0, color: 'var(--color-text-light)'}}>{item.product.price.replace(/<[^>]+>/g, '')}</p>
                 </div>
               </div>
-              <button 
-                onClick={() => removeFromCart(item.product.id)}
-                style={{background: 'none', border: 'none', color: 'red', cursor: 'pointer', fontWeight: 'bold'}}
-              >
-                Remove
-              </button>
+              <div style={{display: 'flex', alignItems: 'center', gap: '15px'}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: '10px', background: 'var(--color-off-white)', padding: '5px 10px', borderRadius: '20px'}}>
+                  <button onClick={() => updateQuantity(item.product.id, item.qty - 1)} style={{border: 'none', background: 'none', cursor: 'pointer', fontSize: '1.2rem', color: 'var(--color-text-main)'}}>-</button>
+                  <span style={{fontWeight: 'bold', width: '20px', textAlign: 'center'}}>{item.qty}</span>
+                  <button onClick={() => updateQuantity(item.product.id, item.qty + 1)} style={{border: 'none', background: 'none', cursor: 'pointer', fontSize: '1.2rem', color: 'var(--color-text-main)'}}>+</button>
+                </div>
+                <button 
+                  onClick={() => removeFromCart(item.product.id)}
+                  style={{background: 'none', border: 'none', color: 'red', cursor: 'pointer', fontWeight: 'bold'}}
+                >
+                  Remove
+                </button>
+              </div>
             </div>
           ))}
           
           <div style={{borderTop: '2px solid var(--color-cream)', marginTop: '20px', paddingTop: '20px', textAlign: 'right'}}>
-            <h2 style={{margin: '0 0 20px 0'}}>Total: ₹{total}</h2>
+            <h2 style={{margin: '0 0 20px 0'}}>Total: Rs. {total}</h2>
             <div style={{display: 'flex', justifyContent: 'flex-end', gap: '15px'}}>
               <button className="btn btn-outline" onClick={clearCart}>Clear Cart</button>
               <button className="btn btn-primary" onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
@@ -57,3 +64,6 @@ export default function Cart() {
     </main>
   );
 }
+
+
+

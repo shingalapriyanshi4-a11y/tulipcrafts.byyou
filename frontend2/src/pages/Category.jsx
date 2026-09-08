@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { useLocation, Link } from 'react-router-dom';
@@ -7,11 +7,12 @@ export default function Category() {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState('all');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    setIsLoaded(false); // trigger animation reset
+    setIsLoaded(false); setError(false);
     const searchParams = new URLSearchParams(location.search);
     const cat = searchParams.get('cat') || 'all';
     setFilter(cat);
@@ -25,7 +26,7 @@ export default function Category() {
         setProducts(res.data);
         setTimeout(() => setIsLoaded(true), 100);
       })
-      .catch(err => console.error(err));
+      .catch(err => { console.error(err); setError(true); setIsLoaded(true); });
   }, [location.search]);
 
   const categories = [
@@ -212,3 +213,4 @@ export default function Category() {
     </main>
   );
 }
+

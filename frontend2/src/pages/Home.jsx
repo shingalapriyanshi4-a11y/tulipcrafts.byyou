@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ import ReviewSection from '../components/ReviewSection';
 export default function Home() {
   const [bestsellers, setBestsellers] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     axios.get('https://grateful-abundance-production-89ff.up.railway.app/api/products')
@@ -16,7 +17,7 @@ export default function Home() {
         setBestsellers(best.length > 0 ? best : res.data.slice(0, 4));
         setTimeout(() => setIsLoaded(true), 100);
       })
-      .catch(err => console.error(err));
+      .catch(err => { console.error(err); setError(true); setIsLoaded(true); });
   }, []);
 
   const getImgUrl = (path) => path.startsWith('uploads/') ? `https://grateful-abundance-production-89ff.up.railway.app/${path}` : `/${path}`;
@@ -159,17 +160,17 @@ export default function Home() {
       {/* Features Banner */}
       <section className="features-banner">
         <div className="feature-item">
-          <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>✨</div>
+          <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>âœ¨</div>
           <h4>Handmade with Love</h4>
           <p>Every single petal is crafted by hand to ensure unique, premium quality.</p>
         </div>
         <div className="feature-item">
-          <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>🎨</div>
+          <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>ðŸŽ¨</div>
           <h4>Fully Customizable</h4>
           <p>Choose your favorite colors and designs to match your aesthetic.</p>
         </div>
         <div className="feature-item">
-          <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>🌷</div>
+          <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>ðŸŒ·</div>
           <h4>Everlasting Beauty</h4>
           <p>Unlike real flowers, our pipe-cleaner bouquets stay beautiful forever.</p>
         </div>
@@ -178,3 +179,4 @@ export default function Home() {
     </main>
   );
 }
+
