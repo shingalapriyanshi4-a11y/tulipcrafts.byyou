@@ -128,7 +128,7 @@ export default function Header() {
             Tulipcrafts.byyou
           </Link>
 
-          <nav className={`header-nav ${isMobileMenuOpen ? 'open' : '}`}>
+          <nav className={`header-nav ${isMobileMenuOpen ? 'open' : ''}`}>
             <Link to="/" className="header-link">HOME</Link>
             <Link to="/category" className="header-link">SHOP</Link>
             
@@ -363,6 +363,7 @@ export default function Header() {
     </>
   );
 }
+
 
 
 
