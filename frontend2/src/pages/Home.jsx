@@ -160,17 +160,17 @@ export default function Home() {
       {/* Features Banner */}
       <section className="features-banner">
         <div className="feature-item">
-          <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>âœ¨</div>
+            <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>✨</div>
           <h4>Handmade with Love</h4>
           <p>Every single petal is crafted by hand to ensure unique, premium quality.</p>
         </div>
         <div className="feature-item">
-          <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>ðŸŽ¨</div>
+            <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>🎨</div>
           <h4>Fully Customizable</h4>
           <p>Choose your favorite colors and designs to match your aesthetic.</p>
         </div>
         <div className="feature-item">
-          <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>ðŸŒ·</div>
+            <div style={{fontSize: '2.5rem', marginBottom: '15px'}}>🌻</div>
           <h4>Everlasting Beauty</h4>
           <p>Unlike real flowers, our pipe-cleaner bouquets stay beautiful forever.</p>
         </div>
